@@ -86,7 +86,7 @@ class ImageGenerator:
 
 
 # Example usage:
-# generator = ImageGenerator()
+generator = ImageGenerator()
 # generator.fetch_images('your prompt', num_images=3)
-# generator.generate_image('your prompt', output_path="generated_image.png", max_batch_size=2)
+generator.generate_image('sky god', output_path="generated_image.png", max_batch_size=2)
 # generator.refine_image('your prompt', n_steps=40, high_noise_frac=0.8, output_path="refined_image.png")

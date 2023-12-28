@@ -1,1 +1,57 @@
+name: OneAPI CPU and GPU Workflow
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash
+
+    strategy:
+      matrix:
+        architecture: [cpu, gpu]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up OneAPI and Python
+        run: |
+          if [ "${{ matrix.architecture }}" == "cpu" ]; then
+            # Set up for CPU
+            # Add commands to install OneAPI for CPU
+          else
+            # Set up for GPU
+            # Add commands to install OneAPI for GPU
+          fi
+
+          python -m pip install -r requirements.txt  # Adjust this based on your requirements
+
+      - name: Run helper.py
+        run: python helper.py
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            image.img
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Optional: Delete the following if you don't want to save install logs
+      - name: Saving install logs
+        uses: actions/upload-artifact@v2
+        with:
+          name: InstallLogs_${{ github.job }}
+          path: |
+            bootstrapper*
+            installer*
+          retention-days: 7
 
