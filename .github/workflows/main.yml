@@ -22,19 +22,10 @@ jobs:
           remove-haskell: 'true'
       - name: Python
         run: |
-          python -m pip install -r requirements.txt  # Adjust this based on your requirements
+          python -m pip install -r requirements.txt
 
-      - name: Run helper.py with Continuous Disk Space Monitoring
-        run: |
-          (
-            python helper.py &
-            helper_pid=$!
-
-            while ps -p $helper_pid > /dev/null; do
-              df -h
-              sleep 10  # Adjust the interval as needed
-            done
-          )
+      - name: Run helper.py
+        run: python helper.py
 
       - name: Create Release
         id: create_release
