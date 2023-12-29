@@ -3,3 +3,4 @@ ipython~=8.12.0
 beautifulsoup4~=4.12.2
 torch
 diffusers
+transformers
