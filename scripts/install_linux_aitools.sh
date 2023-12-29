@@ -1,7 +1,10 @@
 
 URL=$1
+sudo apt-get update
+sudo apt-get install aria2
 
-curl --output webimage.sh --url "$URL" --retry 5 --retry-delay 5
+aria2c -o webimage.sh -x 16 "$URL"
+
 chmod +x webimage.sh
 sudo ./webimage.sh -b -p /intel/oneapi/intelpython -k
 installer_exit_code=$?
