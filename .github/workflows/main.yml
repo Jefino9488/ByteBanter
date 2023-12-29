@@ -13,12 +13,28 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Maximize build disk space
+        uses: easimon/maximize-build-space@v10
+        with:
+          swap-size-mb: 8192
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
       - name: Python
         run: |
           python -m pip install -r requirements.txt  # Adjust this based on your requirements
 
-      - name: Run helper.py
-        run: python helper.py
+      - name: Run helper.py with Continuous Disk Space Monitoring
+        run: |
+          (
+            python helper.py &
+            helper_pid=$!
+
+            while ps -p $helper_pid > /dev/null; do
+              df -h
+              sleep 10  # Adjust the interval as needed
+            done
+          )
 
       - name: Create Release
         id: create_release
@@ -38,4 +54,3 @@ jobs:
             bootstrapper*
             installer*
           retention-days: 7
-
