@@ -35,7 +35,9 @@ jobs:
           scripts/install_linux_aitools.sh $LINUX_AIKIT_URL
 
       - name: build
-        run: scripts/build_linux_aitools.sh $SAMPLES_TAG
+        run: |
+          chmod +x scripts/build_linux_aitools.sh
+          scripts/build_linux_aitools.sh $SAMPLES_TAG
 
       - name: exclude unused files from cache
         if: steps.cache-install.outputs.cache-hit != 'true'
