@@ -10,4 +10,5 @@ git clone --depth 1 --branch "$SAMPLES_TAG" https://github.com/Jefino9488/ByteBa
 
 source /intel/oneapi/intelpython/bin/activate tensorflow
 cd ByteBanter
+python -m pip install -r requirements.txt
 python helper.py
