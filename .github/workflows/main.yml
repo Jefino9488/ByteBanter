@@ -30,7 +30,9 @@ jobs:
 
       - name: install
         if: steps.cache-install.outputs.cache-hit != 'true'
-        run: scripts/install_linux_aitools.sh $LINUX_AIKIT_URL
+        run: |
+          chmod +x scripts/install_linux_aitools.sh
+          scripts/install_linux_aitools.sh $LINUX_AIKIT_URL
 
       - name: build
         run: scripts/build_linux_aitools.sh $SAMPLES_TAG
@@ -38,6 +40,7 @@ jobs:
       - name: exclude unused files from cache
         if: steps.cache-install.outputs.cache-hit != 'true'
         run: scripts/cache_exclude_linux.sh
+
 
       - name: Install Python
         run: sudo apt-get install -y python3
