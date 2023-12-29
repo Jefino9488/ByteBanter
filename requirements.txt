@@ -4,3 +4,4 @@ beautifulsoup4~=4.12.2
 torch
 diffusers
 transformers
+accelerate
