@@ -1,20 +1,13 @@
-name: OneAPI CPU and GPU Workflow
+name: test
 
 on:
   push:
     branches:
-      - main  # Change this to your main branch
+      - main
 
 jobs:
   build_and_release:
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        shell: bash
-
-    strategy:
-      matrix:
-        architecture: [cpu, gpu]
 
     steps:
       - name: Checkout Repository
@@ -32,7 +25,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            image.img
+            generated_image.png
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
