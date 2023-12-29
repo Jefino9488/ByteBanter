@@ -19,10 +19,10 @@ jobs:
           swap-size-mb: 8192
       - name: Python
         run: |
-          python "$GITHUB_WORKSPACE"/-m pip install -r requirements.txt
+          python -m pip install -r "$GITHUB_WORKSPACE/requirements.txt"
 
       - name: Run helper.py
-        run: python helper.py
+        run: python "$GITHUB_WORKSPACE/helper.py"
 
       - name: Create Release
         id: create_release
