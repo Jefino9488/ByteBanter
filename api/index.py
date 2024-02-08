@@ -2,18 +2,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
 @app.route('/')
-def hello():
-    return 'Hello, world'
+def home():
+    return 'Hello, World!'
 
-
-@app.route('/test')
-def test():
-    return 'Test'
-
-
-if __name__ == '__main__':
-    app.run()
-
-
+@app.route('/about')
+def about():
+    return 'About'
