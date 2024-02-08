@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -13,7 +13,3 @@ def test():
     return 'Test'
 
 
-@app.route('/result')
-def result():
-    dict = {'phy': 50, 'che': 60, 'maths': 70}
-    return render_template('result.html', result=dict)
